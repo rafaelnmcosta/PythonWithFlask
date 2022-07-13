@@ -12,4 +12,4 @@ def index():
 
 #Checando se o usuário está acessando o programa principal
 if __name__ == '__main__':
-    app.run()
+    app.run(debug = True)
