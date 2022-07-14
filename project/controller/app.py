@@ -5,11 +5,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 # Rotas do aplicativo com decorator
-
-
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
 # Checando se o usuário está acessando o programa principal
