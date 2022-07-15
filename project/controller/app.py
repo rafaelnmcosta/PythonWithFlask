@@ -1,4 +1,3 @@
-
 import os
 
 from werkzeug.utils import secure_filename
@@ -7,7 +6,7 @@ from flask import Flask, render_template, request
 # instância da classe flask
 app = Flask(__name__, template_folder='../template')
 
-UPLOAD_FOLDER = '../upload'
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'upload')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Rotas do aplicativo com decorator
@@ -17,11 +16,11 @@ def index():
 
 
 # Rota que faz upload da imagem
-@app.route("/upload", methods=['GET','POST'])
+@app.route("/upload", methods=['POST'])
 def uploaded():
     file = request.files['imagem']
     filename = secure_filename(file.filename)
-    savePath = file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    savePath = os.path.join(UPLOAD_FOLDER, filename)
     file.save(savePath)
     return 'uploded'
 
