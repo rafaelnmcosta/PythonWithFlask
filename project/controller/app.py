@@ -1,14 +1,14 @@
 from cgitb import html
+from distutils.command.upload import upload
 import os
 
-from aiohttp import request
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 # instância da classe flask
 app = Flask(__name__, template_folder='../template')
 
-directory = os.path.join(os.getcwd(), 'upload')
+UPLOAD_FOLDER = os.path.join(os.getcwd('upload'), 'upload')
 
 # Rotas do aplicativo com decorator
 @app.route("/")
@@ -20,7 +20,7 @@ def index():
 @app.route("/upload", methods=['POST'])
 def uploaded():
     file = request.files['imagem']
-    savePath = os.path.join(directory, secure_filename(file.filename))
+    savePath = os.path.join(UPLOAD_FOLDER)
     file.save(savePath)
     return 'uploded'
 
