@@ -1,7 +1,8 @@
 import os
 
+from pytesseract import pytesseract
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 
 # instância da classe flask
 app = Flask(__name__, template_folder='../template')
