@@ -1,6 +1,5 @@
-import os
 
-from pytesseract import pytesseract
+import os
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, send_file
 
@@ -17,14 +16,13 @@ def index():
 
 
 # Rota que faz upload da imagem
-@app.route("/upload", methods=['POST'])
+@app.route("/upload", methods=['GET','POST'])
 def uploaded():
     file = request.files['imagem']
     filename = secure_filename(file.filename)
     savePath = os.path.join(UPLOAD_FOLDER, filename)
     file.save(savePath)
-    return 'uploded'
-
+    return render_template("index.html",filename = filename)
 
 # Checando se o usuário está acessando o programa principal
 if __name__ == '__main__':
