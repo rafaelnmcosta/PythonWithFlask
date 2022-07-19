@@ -14,7 +14,7 @@
   • Flask (instalado via comando: pip install Flask)<br>
   • Biblioteca requests (instalado via comando: pip install requests)<br>
   • Biblioteca pandas (instalado via comando: pip install pandas)<br>
-### [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras)
+### Pessoas Desenvolvedoras do Projeto
 * O projeto está sendo desenvolvido pelos alunos do Instituto Federal de Goás: Gustavo Henrique Xavier de Brito e Mauro Lopes
 ### Licença
 ### Conclusão
