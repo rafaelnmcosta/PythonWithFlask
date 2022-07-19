@@ -26,19 +26,19 @@ def produto():
     NameList = []
     product = request.form['product']
     print(product)
-    url = 'https://lista.mercadolivre.com.br/'
+    url = 'https://www.amazon.com.br/s?k='
     response = requests.get(url+product)
     print(response)
     content = response.content
     amazon = BeautifulSoup(content, 'html.parser')
-    offers = amazon.find('div', attrs={
-                         'ui-search-result__wrapper'})
-    teste = offers.find('div', attrs={'ui-search-item__group ui-search-item__group--title'})
-    print(teste.text)
-    teste2 = teste.text
+    offers = amazon.find('div', attrs={'class':
+                         'sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-20'})
+    #teste = offers.find('div', attrs={'ui-search-item__group ui-search-item__group--title'})
+    print(offers)
+    
     #title = offers.find('h2', attrs={'class': 'a-size-mini a-spacing-none a-color-base s-line-clamp-4'})
     # offers.prettify
-    return render_template('produto.html', teste2=teste2)
+    return render_template('produto.html', product=product)
 
 
 # Rota que faz upload da imagem
