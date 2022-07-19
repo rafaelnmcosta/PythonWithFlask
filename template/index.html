@@ -1,22 +1,21 @@
+{%block content%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Busca treco</title>
   </head>
   <body>
-    <form
-      action="/upload"
-      method="post"
-      enctype="multipart/form-data"
-    >
-      <div><input type="file" name="imagem" /></div>
-      <div><button type="submit">Submit</button></div>
+    <h1>Buscador de ofertas</h1>
+    <form action="/produto" method="post">
+
+      <input type="text" name="product" id="product" placeholder="Digite aqui o produto desejado" required>
+      <div><button type="submit">Buscar</button></div>
+
     </form>
-    <div>
-      <img src="../upload/{{filename}}" alt="">
-    </div>
+    
   </body>
 </html>
+{%endblock%}
