@@ -17,25 +17,29 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    
+
     return render_template('index.html')
+
 
 @app.route('/produto', methods=['GET', 'POST'])
 def produto():
-    NameList = [] 
+    NameList = []
     product = request.form['product']
     print(product)
-    url = 'https://www.amazon.com.br/s?k='
+    url = 'https://lista.mercadolivre.com.br/'
     response = requests.get(url+product)
     print(response)
     content = response.content
     amazon = BeautifulSoup(content, 'html.parser')
     offers = amazon.find('div', attrs={
-                        'class': 'a-section a-spacing-small s-padding-left-small s-padding-right-small'})
-    print(offers)
+                         'ui-search-result__wrapper'})
+    teste = offers.find('div', attrs={'ui-search-item__group ui-search-item__group--title'})
+    print(teste.text)
+    teste2 = teste.text
     #title = offers.find('h2', attrs={'class': 'a-size-mini a-spacing-none a-color-base s-line-clamp-4'})
-    #offers.prettify
-    return render_template('produto.html', product=product)
+    # offers.prettify
+    return render_template('produto.html', teste2=teste2)
+
 
 # Rota que faz upload da imagem
 """
