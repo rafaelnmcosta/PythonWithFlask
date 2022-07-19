@@ -31,11 +31,14 @@ def produto():
     print(response)
     content = response.content
     amazon = BeautifulSoup(content, 'html.parser')
-    offers = amazon.find('div', attrs={'class':
-                         'sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-20'})
-    #teste = offers.find('div', attrs={'ui-search-item__group ui-search-item__group--title'})
-    print(offers)
-    
+    offers = amazon.find('div', attrs={
+                         's-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_5'})
+    name = offers.find('span', attrs={
+                       'a-size-base-plus a-color-base a-text-normal'})
+    price = offers.find('span', attrs={'a-offscreen'})
+
+    print(name.text,price.text)
+
     #title = offers.find('h2', attrs={'class': 'a-size-mini a-spacing-none a-color-base s-line-clamp-4'})
     # offers.prettify
     return render_template('produto.html', product=product)
