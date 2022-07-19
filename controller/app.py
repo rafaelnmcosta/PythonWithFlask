@@ -32,15 +32,15 @@ def produto():
     print(response)
     content = response.content
     mercadoLivre = BeautifulSoup(content, 'html.parser')
-    offers = mercadoLivre.find('div', attrs={'class':
-                         'ui-search-result__wrapper'})
-    #teste = offers.find('div', attrs={'ui-search-item__group ui-search-item__group--title'})
+    offers = mercadoLivre.find(
+        'div', attrs={'class': 'ui-search-result__wrapper'})
     name = offers.find('h2', attrs={'ui-search-item__title'})
-    print(name.text)
-    
+    price = offers.find('span', attrs={'price-tag-amount'})
+    print(name.text, price.text)
+
     #title = offers.find('h2', attrs={'class': 'a-size-mini a-spacing-none a-color-base s-line-clamp-4'})
     # offers.prettify
-    return render_template('produto.html', product=product)
+    return render_template('produto.html', product=product,name=name,price=price)
 
 
 # Rota que faz upload da imagem
