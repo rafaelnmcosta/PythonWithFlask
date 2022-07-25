@@ -32,6 +32,7 @@ def produto():
         'div', attrs={'class': 'ui-search-result__wrapper'})
     name = offers.find('h2', attrs={'ui-search-item__title'})
     price = offers.find('span', attrs={'price-tag-amount'})
+    link = offers.find('a', attrs={'ui-search-result__content ui-search-link'})
     print(name.text, price.text)
 
     #title = offers.find('h2', attrs={'class': 'a-size-mini a-spacing-none a-color-base s-line-clamp-4'})
