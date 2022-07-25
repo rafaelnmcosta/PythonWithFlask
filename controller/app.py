@@ -1,3 +1,4 @@
+from collections import namedtuple
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -12,6 +13,8 @@ app = Flask(__name__, template_folder='../template')
 # Rotas do aplicativo com decorator
 
 # if span = ui-search-price__discount append.list
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
 
@@ -28,16 +31,18 @@ def produto():
     print(response)
     content = response.content
     mercadoLivre = BeautifulSoup(content, 'html.parser')
-    offers = mercadoLivre.find(
-        'div', attrs={'class': 'ui-search-result__wrapper'})
-    name = offers.find('h2', attrs={'ui-search-item__title'})
-    price = offers.find('span', attrs={'price-tag-amount'})
-    link = offers.find('a', attrs={'ui-search-result__content ui-search-link'})
-    print(name.text, price.text)
+    offers = mercadoLivre.find_all(
+        'div', attrs={'class': 'andes-card andes-card--flat andes-card--default ui-search-result ui-search-result--core andes-card--padding-default andes-card--animated'})
 
+    for offer in offers:
+        price = offer.find('span', attrs={'class': 'price-tag-amount'})
+        name = offer.find('h2', attrs={'ui-search-item__title'})
+        discount = offer.find(
+            'span', attrs={'ui-search-price__second-line__label'})
+        print(name.text,price.text, discount.text)
     #title = offers.find('h2', attrs={'class': 'a-size-mini a-spacing-none a-color-base s-line-clamp-4'})
     # offers.prettify
-    return render_template('produto.html', product=product,name=name,price=price)
+    return render_template('produto.html', product=product, name=name, price=price)
 
 
 # Rota que faz upload da imagem
