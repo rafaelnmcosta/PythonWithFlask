@@ -1,4 +1,5 @@
 from collections import namedtuple
+from os import link
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -35,14 +36,20 @@ def produto():
         'div', attrs={'class': 'andes-card andes-card--flat andes-card--default ui-search-result ui-search-result--core andes-card--padding-default andes-card--animated'})
 
     for offer in offers:
+        links = offer.find('a', attrs={'class': 'ui-search-link'})
         price = offer.find('span', attrs={'class': 'price-tag-amount'})
         name = offer.find('h2', attrs={'ui-search-item__title'})
         discount = offer.find(
             'span', attrs={'ui-search-price__second-line__label'})
-        print(name.text,price.text, discount.text)
-    #title = offers.find('h2', attrs={'class': 'a-size-mini a-spacing-none a-color-base s-line-clamp-4'})
-    # offers.prettify
-    return render_template('produto.html', product=product, name=name, price=price)
+        if (discount):
+            NameList.append(
+                [name.text, price.text, discount.text, links['href']])
+
+    productList = pd.DataFrame(data=NameList, columns=[
+                               'name', 'price', 'discount', 'links'])
+    table = productList.to_html()
+    print(table)
+    return render_template('produto.html', table=table, product=product, name=name, price=price)
 
 
 # Rota que faz upload da imagem
