@@ -1,21 +1,17 @@
-import os
-from unicodedata import name
-from attr import attrs
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, send_file
 
 # instância da classe flask
 app = Flask(__name__, template_folder='../template')
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'upload')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#UPLOAD_FOLDER = os.path.join(os.getcwd(), 'upload')
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Rotas do aplicativo com decorator
 
-
+# if span = ui-search-price__discount append.list
 @app.route("/", methods=["GET", "POST"])
 def index():
 
