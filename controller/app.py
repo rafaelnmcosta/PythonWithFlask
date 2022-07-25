@@ -1,5 +1,6 @@
 from collections import namedtuple
 from os import link
+from turtle import title
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -47,10 +48,8 @@ def produto():
 
     productList = pd.DataFrame(data=NameList, columns=[
                                'name', 'price', 'discount', 'links'])
-    table = productList.to_html()
-    print(table)
-    return render_template('produto.html', table=table, product=product, name=name, price=price)
-
+    print(productList)
+    return render_template('produto.html',tables=[productList.to_html(classes='data', header=True)])
 
 # Rota que faz upload da imagem
 """
