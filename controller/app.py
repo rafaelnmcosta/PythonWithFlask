@@ -34,7 +34,7 @@ def produto():
     content = response.content
     mercadoLivre = BeautifulSoup(content, 'html.parser')
     offers = mercadoLivre.find_all(
-        'div', attrs={'class': 'andes-card andes-card--flat andes-card--default ui-search-result ui-search-result--core andes-card--padding-default andes-card--animated'})
+        'div', attrs={'class': 'ui-search-result__wrapper'})
 
     for offer in offers:
         links = offer.find('a', attrs={'class': 'ui-search-link'})
