@@ -48,7 +48,6 @@ def produto():
 
     productList = pd.DataFrame(data=NameList, columns=[
                                'name', 'price', 'discount', 'links'])
-    print(productList)
     return render_template('produto.html',tables=[productList.to_html(classes='data', header=True)])
 
 # Rota que faz upload da imagem
