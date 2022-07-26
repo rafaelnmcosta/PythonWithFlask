@@ -25,7 +25,6 @@ def product():
     mercadoLivre = BeautifulSoup(content, 'html.parser')
     offers = mercadoLivre.find_all(
         'div', attrs={'class': 'ui-search-result__wrapper'})
-
     for offer in offers:
         links = offer.find('a', attrs={'class': 'ui-search-link'})
         price = offer.find('span', attrs={'class': 'price-tag-amount'})
